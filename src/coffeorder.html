@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html>
+<link rel="stylesheet" href="coffee.css">
+<h1></h1>
+<p></p>
+
+
+<body>
+    <div class="div-0">
+        <label for="demo">Current Name : <span id="Name"></span> </label>
+        <input type="text" id="SetName">
+        <button onclick="setName()">Change Name</button>
+    </div>
+    <div class="div-1">
+        <label for="size">Choose your size:</label>
+        <select name="size" id="size">
+            <option value="type">Choose type</option>
+            <option value="small">Small</option>
+            <option value="medium">medium</option>
+            <option value="large">large</option>
+            <option value="xlarge">XLarge</option>
+        </select>
+    </div>
+    <div class="div-2">
+        <label for="coffee">Choose your coffee type:</label>
+        <select name="coffee" id="coffee">
+            <option value="type">Choose type</option>
+            <option value="coffee">coffee</option>
+            <option value="frap">frap</option>
+            <option value="iced capp">iced capp</option>
+            <option value="latte">latte</option>
+            <option value="other">other</option>
+        </select>
+    </div>
+    <div class="div-3">
+        <label for="input">Enter your modifications</label>
+        <input type="text" id="modifications" value="">
+    </div>
+
+    <div class="div-4"> <button onclick="orderDescription()">Submit</button></div>
+
+    <p id="input"></p>
+    <img>
+
+    <script>
+
+        const userStorageKey = "name";
+
+        function setName() {
+            const inputValue = document.getElementById("SetName").value;
+            const name = localStorage.getItem(userStorageKey);
+            console.log(name);
+            if (!inputValue && name) {
+                document.getElementById("Name").innerText = name;
+            } else {
+                document.getElementById("Name").innerText = inputValue;
+                localStorage.setItem(userStorageKey, inputValue);
+            }
+        }
+
+        setName();
+
+        function orderDescription() {
+
+            let size = document.getElementById("size").value;
+            let coffee = document.getElementById("coffee").value;
+            let modify = document.getElementById("modifications").value;
+            document.getElementById("input").innerHTML = "Hello, you have ordered a " + size + "  " + coffee + " , " + modify;
+            let img
+            // document.body.appendChild(img);
+            // img.src = "../images/tims1.jpg"
+            // img.src = "../images/icedcapp.jfif"
+            // img.id = "img-coffee"
+
+            if (document.getElementById("img-coffee") == null) {
+                img = document.createElement("img")
+                document.body.appendChild(img);
+                img.id = "img-coffee"
+            }
+            else {
+                img = document.getElementById("img-coffee")
+            }
+
+            if (coffee == "coffee") {
+                img.src = "../images/tims1.jpg"
+            }
+            else if (coffee == "iced capp") {
+                img.src = "../images/icedcapp.jfif"
+            }
+            else if (coffee == "frap") {
+                img.src = "../images/frap.jfif"
+            }
+            else if (coffee == "latte") {
+                img.src = "../images/latte.jfif"
+            }
+            else if (coffee == "other") {
+            }
+        }
+
+
+
+    </script>
+
+
+</body>
+
+</html>
